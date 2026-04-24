@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Generate a token
         id: generate-token
-        uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
         with:
           app-id: ${{ secrets.PUSH_O_MATIC_APP_ID }}
           private-key: ${{ secrets.PUSH_O_MATIC_APP_KEY }}
@@ -24,10 +24,10 @@ jobs:
           ref: 'main'
       
       - name: Install uv
-        uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57 # v8.0.0
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
+        uses: pnpm/action-setup@078e9d416474b29c0c387560859308974f7e9c53 # v6.0.1
 
       - name: Import post
         id: import
@@ -45,7 +45,7 @@ jobs:
         run: pnpm --filter root.immich.app run format:fix
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           token: ${{ steps.generate-token.outputs.token }}
           add-paths: apps/root.immich.app/src/routes/blog
